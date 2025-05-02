@@ -6,7 +6,6 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { cn } from '@/lib/utils';
 
 type SliderProps = {
-
   className?: string;
   min: number;
   max: number;
@@ -14,7 +13,6 @@ type SliderProps = {
   formatLabel?: (value: number) => string;
   value?: number[] | readonly number[];
   onValueChange?: (values: number[]) => void;
-
 };
 
 const RangeSlider = React.forwardRef(
@@ -22,30 +20,22 @@ const RangeSlider = React.forwardRef(
     { className, min, max, step, formatLabel, value, onValueChange, ...props }: SliderProps,
     ref,
   ) => {
-
     const initialValue = Array.isArray(value) ? value : [min, max];
     const [localValues, setLocalValues] = React.useState(initialValue);
 
     React.useEffect(() => {
-
       setLocalValues(Array.isArray(value) ? value : [min, max]);
-
     }, [min, max, value]);
 
     const handleValueChange = (newValues: number[]) => {
-
       setLocalValues(newValues);
-
       if (onValueChange) {
-
         onValueChange(newValues);
-
       }
     };
 
     return (
       <SliderPrimitive.Root
-
         ref={ref as React.RefObject<HTMLDivElement>}
         min={min}
         max={max}
@@ -53,7 +43,6 @@ const RangeSlider = React.forwardRef(
         value={localValues}
         onValueChange={handleValueChange}
         className={cn('relative flex w-full touch-none select-none mb-6 items-center', className)}
-        
         {...props}>
         <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-primary/20">
           <SliderPrimitive.Range className="absolute h-full bg-primary" />
